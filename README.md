@@ -1,4 +1,4 @@
-A Rest API which scraps data from [WebSite](https://corona.gov.bd) using requests,lxml,django & Rest Framework.
+A Rest API which scrapes data from [WebSite](https://corona.gov.bd) using requests,lxml,django & Rest Framework.
 ___
 [Browsable API](https://coronabdapi.herokuapp.com/api/)  
 ___
