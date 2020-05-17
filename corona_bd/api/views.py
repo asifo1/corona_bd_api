@@ -15,29 +15,31 @@ class Home(APIView):
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer)
 
     def get(self, request):
-        try:
+        # try:
+        if True:
             response = requests.get('http://corona.gov.bd')
             tree = html.fromstring(response.content)
 
             new_infected = tree.xpath(
-                '/html/body/section[3]/div[1]/div/div[1]/div/div[1]/div[1]/h1/b')[0].text
+                '/html/body/section[3]/div/div[1]/div[1]/div/div[1]/div[1]/h3/b')[0].text
+                
             total_infected = tree.xpath(
-                '/html/body/section[3]/div[1]/div/div[1]/div/div[1]/div[2]/h1/b')[0].text
+                '/html/body/section[3]/div/div[1]/div[1]/div/div[1]/div[2]/h3/b')[0].text
 
             new_death = tree.xpath(
-                '/html/body/section[3]/div[1]/div/div[2]/div/div[1]/div[1]/h1/b')[0].text
+                '/html/body/section[3]/div/div[1]/div[2]/div/div[1]/div[1]/h1/b')[0].text
             total_death = tree.xpath(
-                '/html/body/section[3]/div[1]/div/div[2]/div/div[1]/div[2]/h1/b')[0].text
+                '/html/body/section[3]/div/div[1]/div[2]/div/div[1]/div[2]/h1/b')[0].text
 
             new_cured = tree.xpath(
-                '/html/body/section[3]/div[1]/div/div[3]/div/div[1]/div[1]/h1/b')[0].text
+                '/html/body/section[3]/div/div[1]/div[3]/div/div[1]/div[1]/h3/b')[0].text
             total_cured = tree.xpath(
-                '/html/body/section[3]/div[1]/div/div[3]/div/div[1]/div[2]/h1/b')[0].text
+                '/html/body/section[3]/div/div[1]/div[3]/div/div[1]/div[2]/h3/b')[0].text
 
             new_test = tree.xpath(
-                '/html/body/section[3]/div[1]/div/div[4]/div/div[1]/div[1]/h1/b')[0].text
+                '/html/body/section[3]/div/div[1]/div[4]/div/div[1]/div[1]/h3/b')[0].text
             total_test = tree.xpath(
-                '/html/body/section[3]/div[1]/div/div[4]/div/div[1]/div[2]/h1/b')[0].text
+                '/html/body/section[3]/div/div[1]/div[4]/div/div[1]/div[2]/h3/b')[0].text
 
             data = {
                 'source': 'https://corona.gov.bd/',
@@ -52,8 +54,8 @@ class Home(APIView):
                     'total_test': total_test}
             }
 
-        except:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+        # except:
+        #     return Response(status=status.HTTP_404_NOT_FOUND)
 
         return Response(data, status=status.HTTP_200_OK)
 
