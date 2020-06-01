@@ -9,6 +9,7 @@ from rest_framework.renderers import (
 
 
 from lxml import html,etree
+from django.views.generic.base import TemplateView
 
 
 class Home(APIView):
@@ -60,3 +61,7 @@ class Home(APIView):
 
         return Response(data, status=status.HTTP_200_OK)
 
+
+
+class MainPage(TemplateView):
+    template_name = 'index.html'
