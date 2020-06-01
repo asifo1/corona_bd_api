@@ -8,17 +8,18 @@ from rest_framework.renderers import (
 )
 
 
-from lxml import html
+from lxml import html,etree
 
 
 class Home(APIView):
     renderer_classes = (BrowsableAPIRenderer, JSONRenderer)
 
     def get(self, request):
-        # try:
-        if True:
+        try:
+        # if True:
             response = requests.get('http://corona.gov.bd')
-            tree = html.fromstring(response.content)
+            parser = etree.HTMLParser(encoding='utf-8')
+            tree = html.fromstring(response.content,parser=parser)
 
             new_infected = tree.xpath(
                 '/html/body/section[3]/div/div[1]/div[1]/div/div[1]/div[1]/h3/b')[0].text
@@ -54,8 +55,8 @@ class Home(APIView):
                     'total_test': total_test}
             }
 
-        # except:
-        #     return Response(status=status.HTTP_404_NOT_FOUND)
+        except:
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
         return Response(data, status=status.HTTP_200_OK)
 
