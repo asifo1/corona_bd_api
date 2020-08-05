@@ -13,11 +13,11 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'Template')
 SECRET_KEY = 'hr85o^jq1s$*2a2bvth#+g^o&p4rb#i#3(y!jsjdgtw1q9h2l9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-# DEBUG = True
+#DEBUG = False
+DEBUG = True
 
 
-ALLOWED_HOSTS = ['coronabdapi.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['coronabdapi.herokuapp.com', '127.0.0.1','192.168.0.101']
 
 
 # Application definition
